@@ -1,0 +1,192 @@
+% ---------------------------------------------------------------------------
+% The two specific cases K(2k+1, k) and K(2k+2, k).
+% Transcribed from handwritten notes (pages 3 to 6).
+% Every departure from the handwritten wording is marked with a comment
+% beginning "% CHANGED:" on the line above it.
+% ---------------------------------------------------------------------------
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.9em}
+
+\title{Kneser graphs $K(2k+n,\,k)$ with $n>0$ are not CFON$^{*}$ 1-colorable:\\[2pt]
+       the cases $K(2k+1,\,k)$ and $K(2k+2,\,k)$}
+\author{Shrey Shah}
+\date{}
+
+\begin{document}
+\maketitle
+
+% CHANGED: this opening is added so the file can be read on its own. The
+% wording is adapted from pages 1, 2 and 5 of the notes. The definition of an
+% efficient open dominating set is not repeated here.
+Let $K$ be the Kneser graph being considered, and let $T$ be an efficient open
+dominating set of $K$, the set of all colored vertices in a CFON$^{*}$
+1-coloring.
+
+Let each vertex, $v$, in $K$ be assigned a variable:
+\[
+  x_v =
+  \begin{cases}
+    1, & v \in T\\
+    0, & v \notin T
+  \end{cases}
+\]
+
+Let $A$ be the adjacency matrix, with each row and column representing a
+vertex, and elements where corresponding vertices for the row-column pair are
+adjacent equals 1, the rest of the elements equal 0. Let $x$ be the vector of
+the values $x_v$. Each element of $Ax$ is the number of colored vertices in
+the neighborhood of the corresponding vertex, so if $T$ is an efficient open
+dominating set then
+\[
+  Ax = \mathbf{1},
+\]
+where $\mathbf{1}$ is the vector with every element equal to 1.
+
+\section{The odd graph $K(2k+1,\,k)$}
+
+% CHANGED: this is the claim from the first sentence of page 1 of the notes,
+% with "efficient dominating set" written "efficient open dominating set".
+The odd graph $K(2k+1,\,k)$ has no efficient open dominating set.
+
+All Kneser graphs are regular, so every vertex has the same degree. For our
+$K(2k+1,\,k)$ graph:
+\[
+  \binom{2k+1-k}{k} \;=\; \binom{k+1}{k} \;=\; \frac{(k+1)!}{1!\,k!} \;=\; k+1
+\]
+
+If we have sets of size $k$, then we have $(2k+1)-k$ sets to form adjacent
+vertices with.
+
+Thus, each row of the adjacency matrix has $k+1$ 1's. We can try to solve the
+matrix equation, ignoring coloring rules for now.
+
+$\rightarrow$ We want every value in the product vector to be a 1, so every
+value of $x$ has to be the same.
+
+% CHANGED: the right-hand side "1" is written \mathbf{1} (all-ones vector),
+% here and in every matrix equation below.
+\[
+  A \cdot x \;=\; A \cdot
+  \begin{bmatrix} c \\ c \\ \vdots \\ c \end{bmatrix}
+  \;=\; \mathbf{1}
+\]
+
+When we multiply each row of $A$, we get:
+\[
+  \underbrace{c + c + c + \cdots + c}_{k+1} \;=\; (k+1) \cdot c
+\]
+
+Each row has to equal 1, so:
+\[
+  (k+1) \cdot c = 1, \qquad c = \frac{1}{k+1}
+\]
+
+So
+\[
+  x \;=\;
+  \begin{bmatrix} 1/(k+1) \\ 1/(k+1) \\ \vdots \\ 1/(k+1) \end{bmatrix}
+  \;=\; \frac{1}{k+1}
+  \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix}
+\]
+
+Now we can find the eigenvalues of our $Ax = \mathbf{1}$ matrix using the odd
+graph formula
+\[
+  \lambda_j = (-1)^j\,(k+1-j), \qquad j = 0, 1, \dots, k
+\]
+
+% CHANGED: "the matrix in invertible" -> "is invertible".
+The range of magnitudes for our eigenvalue is from $1$ ($k = j$) to $k+1$
+($0 = j$). $0$ is not in this range, so the matrix is invertible.
+
+% CHANGED: the exponent n in N_0^n is written |V(K)|, the number of vertices,
+% so that it does not collide with the n of K(2k+n, k).
+Now suppose there was some vector $w$ such that $Aw = \mathbf{1}$, and
+$w \in \mathbb{N}_0^{|V(K)|}$ such that it meets CFON$^{*}$ coloring
+restrictions.
+
+Then:
+\begin{align*}
+  Aw &= Ax = \mathbf{1} \\
+  A^{-1}Aw &= A^{-1}Ax && \text{(we've proven invertibility)} \\
+  w &= x,
+\end{align*}
+% CHANGED: "x is fraction" -> "x is fractional".
+but $x$ is fractional which contradicts the definition of $w$. Thus, $w$
+cannot exist, and $x$ is the unique solution.
+
+% CHANGED: "it's" -> "its" (twice); "not efficient dominating set exists" ->
+% "no efficient open dominating set exists".
+Since $x$ is the unique solution and its elements are fractional, and since
+$x_v$ can only equal 0 or 1 based on its inclusion in $T$, no efficient open
+dominating set exists and thus $K(2k+1,\,k)$ is not 1-colorable.
+
+Thus, $K(29,\,14)$ is not 1-colorable.
+
+\section{$K(2k+2,\,k)$}
+
+Now for the existence of an efficient open dominating set for $K(2k+2,\,k)$.
+
+The $K(2k+2,\,k)$ graph is $\dbinom{k+2}{k}$-regular.
+
+% CHANGED: the notes have k^2+3k+2. The binomial coefficient is
+% (k+2)(k+1)/2 = (k^2+3k+2)/2, so the factor of 2 is restored here and in the
+% three places below that use it.
+So, we have $\dfrac{k^2+3k+2}{2}$ degrees for every vertex.
+
+Let $B$ be the adjacency matrix, with each row and column representing a
+vertex, and elements where corresponding vertices for the row-column pair are
+adjacent equals 1, the rest of the elements equal 0.
+
+Note again that this matches with the values assigned based on $T$:
+\[
+  x_v =
+  \begin{cases}
+    1, & v \in T\\
+    0, & v \notin T
+  \end{cases}
+\]
+
+% CHANGED: factor of 2 (see above).
+Each row of the adjacency matrix has $\dfrac{k^2+3k+2}{2}$ 1's.
+
+Then, suppose
+\[
+  By \;=\; \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix}
+\]
+
+Suppose all the values of $y$ are some constant $d$. Then:
+% CHANGED: factor of 2 (see above). The notes have (k^2+3k+2) d = 1 and
+% d = 1/(k^2+3k+2).
+\[
+  \left( \frac{k^2+3k+2}{2} \right) d = 1
+\]
+\[
+  d = \frac{2}{k^2+3k+2} < 1, \qquad \forall k,\; k \in \mathbb{Z}^{+}
+\]
+
+The eigenvalues for $B$:
+\[
+  \lambda_j = (-1)^j \binom{k+2-j}{2} \qquad \text{for } j = 0, 1, \dots, k
+\]
+
+If $j = 0$, then $\dbinom{k+2}{2} > \dbinom{2}{2} = 1 > 0$.
+
+If $j = k$, then $\dbinom{2}{2} = 1 > 0$.
+
+Thus the eigenvalue for $B$ is always non-zero, making $B$ invertible.
+
+% CHANGED: "BWOC" is spelled out; N_0^n -> N_0^{|V(K)|} as in Section 1.
+By way of contradiction, assume a matrix $p$ exists where $Bp = \mathbf{1}$,
+and $p \in \mathbb{N}_0^{|V(K)|}$.
+
+\[
+  Bp = By, \qquad B^{-1}Bp = B^{-1}By, \qquad p = y,
+\]
+which is a contradiction because $y$ is fractional and $p$ can't be. Thus
+there is no efficient open dominating set for $K(2k+2,\,k)$.
+
+\end{document}
