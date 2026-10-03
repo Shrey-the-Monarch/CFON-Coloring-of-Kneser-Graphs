@@ -1,0 +1,102 @@
+# =============================================================================
+# CFON* colorings of Kneser graphs: .gitignore
+#
+# PDFs are NOT ignored anywhere. The counterexample figures and the compiled
+# paper are meant to be committed.
+# =============================================================================
+
+# ---- LaTeX build artifacts --------------------------------------------------
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.dvi
+*.xdv
+*.nav
+*.snm
+*.vrb
+*.thm
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+*.tdo
+# BibTeX / biber. Note: arXiv wants the .bbl in the upload, so regenerate it
+# (or `git add -f paper/main.bbl`) before submitting there.
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+# minted / pygments caches
+_minted*/
+*.pyg
+# latexmk output directories, if you build with -outdir
+paper/build/
+paper/out/
+
+# ---- SAT solver artifacts ---------------------------------------------------
+# CNF dumps and proof files are regenerable from the scripts and can be very
+# large (GitHub rejects any file over 100 MB).
+*.cnf
+*.dimacs
+*.drat
+*.lrat
+*.proof
+# ...except the ones deliberately kept as evidence. Anything in a directory
+# named certificates/ is tracked. Check sizes before committing; compress big
+# proofs (proof.drat.xz is not matched by the patterns above, so it is tracked).
+!**/certificates/**/*.cnf
+!**/certificates/**/*.drat
+!**/certificates/**/*.lrat
+# Solver run logs kept as part of the record (overrides *.log above)
+!**/results/**/*.log
+
+# ---- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- C / compiled helpers (brute-force search, drat-trim) -------------------
+*.o
+*.obj
+*.exe
+a.out
+build/
+bin/
+
+# ---- Word / Docs lock and temp files ----------------------------------------
+~$*
+.~lock.*#
+*.tmp
+
+# ---- Editors ----------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.texpadtmp/
+
+# ---- OS ---------------------------------------------------------------------
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# ---- Secrets ----------------------------------------------------------------
+.env
