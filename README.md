@@ -10,16 +10,12 @@ This repository holds the results of a mathematics research project, some of it 
 - For κ = 2 the exact value is 2 when n = 5 or 6, and 3 for every n ≥ 7.
 - One color is never enough when n ≥ 2κ + 1, so every such Kneser graph needs at least 2.
 
-Full statements and proofs are in `paper/`. The table of values and the SAT method are in `RESULTS.md`.
-
-## Repository contents
-
-| Folder | Contents |
+The one-color proofs are in `1-Colorability Results/`. The table of values and the SAT method are in `RESULTS CFON Colorings of Kneser Graphs.pdf`.
+#| Folder | Contents |
 | --- | --- |
-| `paper/` | LaTeX source and compiled PDF of the write-up |
-| `counterexamples/` | PDFs and documents showing each counterexample coloring |
-| `code/` | SAT encoding, solver scripts and the coloring checker |
-| `certificates/` | Saved colorings, plus CNF formulas and DRAT proofs for the cases with no valid coloring |
+| `1-Colorability Results/` | LaTeX source and PDFs of the proof that one color never suffices |
+| `cfon-code-and-certificates/code/` | SAT encoding, solver scripts and the coloring checker |
+| `cfon-code-and-certificates/certificates/` | Saved colorings, plus CNF formulas and DRAT proofs for the cases with no valid coloring |
 
 ## Running the code
 
